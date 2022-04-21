@@ -2,8 +2,6 @@
 
 Architecture pattern: [EIP-2535 Diamond Standard](https://github.com/ethereum/EIPs/issues/2535).
 
-The standard loupe functions have been gas-optimized in this implementation and can be called in on-chain transactions. However keep in mind that a diamond can have any number of functions and facets so it is still possible to get out-of-gas errors when calling loupe functions. Except for the `facetAddress` loupe function which has a fixed gas cost.
-
 **Note:** The loupe functions in DiamondLoupeFacet.sol MUST be added to a diamond and are required by the EIP-2535 Diamonds standard.
 
 ## Installation
@@ -12,7 +10,6 @@ The standard loupe functions have been gas-optimized in this implementation and 
 
 2. Install NPM packages:
 ```console
-cd diamond-3-hardhat
 npm install
 ```
 
@@ -46,6 +43,10 @@ Note that upgrade functionality is optional. It is possible to deploy a diamond 
 Note that any number of functions from any number of facets can be added/replaced/removed on a diamond in a single transaction. In addition an initialization function can be executed in the same transaction as an upgrade to initialize any state variables required for an upgrade. This 'everything done in a single transaction' capability ensures a diamond maintains a correct and consistent state during upgrades.
 
 ## Facet Information
+
+**Note:** In this implementation the loupe functions are NOT gas optimized. The `facets`, `facetFunctionSelectors`, `facetAddresses` loupe functions are not meant to be called on-chain and may use too much gas or run out of gas when called in on-chain transactions. In this implementation these functions should be called by off-chain software like websites and Javascript libraries etc., where gas costs do not matter.
+
+However the `facetAddress` loupe function is gas efficient and can be called in on-chain transactions.
 
 The `contracts/Diamond.sol` file shows an example of implementing a diamond.
 
@@ -110,4 +111,3 @@ Diamond Standard was written by Nick Mudge.
 
 MIT license. See the license file.
 Anyone can use or modify this software for their purposes.
-
