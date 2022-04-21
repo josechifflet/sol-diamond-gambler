@@ -4,7 +4,7 @@
   "description": "Smart Contracts For Gambling Games",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prettier": "prettier --write 'contracts/**/*.sol'"
   },
   "repository": {
     "type": "git",
@@ -32,7 +32,8 @@
     "ethereum-waffle": "^4.0.0",
     "ethers": "^5.6.4",
     "hardhat": "^2.9.1",
-    "prettier": "^2.6.0",
+    "hardhat-diamond-abi": "^2.0.0",
+    "prettier": "^2.6.2",
     "prettier-plugin-solidity": "^1.0.0-beta.19",
     "solhint": "^3.3.7",
     "solhint-plugin-prettier": "0.0.5",

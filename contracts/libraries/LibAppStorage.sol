@@ -9,9 +9,9 @@ struct AppStorage {
 }
 
 library LibAppStorage {
-
     function diamondStorage() internal pure returns (AppStorage storage ds) {
-        assembly { ds.slot := 0 }
+        assembly {
+            ds.slot := 0
+        }
     }
-
 }

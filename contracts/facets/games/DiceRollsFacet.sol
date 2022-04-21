@@ -6,12 +6,10 @@ import "@chainlink/contracts/src/v0.8/VRFConsumerBase.sol";
 import "@chainlink/contracts/src/v0.8/ConfirmedOwner.sol";
 
 contract DiceRollsFacet is VRFConsumerBase, ConfirmedOwner(msg.sender) {
-  AppStorage storage s;
-
-
   bytes32 private s_keyHash;
   uint256 private s_fee;
   uint256 public randomResult;
+  AppStorage storage s;
 
   constructor(address vrfCoordinator, address link, bytes32 keyHash, uint256 fee)
     VRFConsumerBase(vrfCoordinator, link)
